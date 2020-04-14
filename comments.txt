@@ -6,3 +6,36 @@ npm run test
 
 # Builds a production version of the application
 npm run build
+
+
+# In development
+docker container: npm run start -> Dockerfile.dev 
+docker build -f Dockerfile.dev .
+
+# In production:
+docker container: npm run build -> Dockerfile
+
+# a bug 3-22-2020 causes react app to exit after docker run command
+(winpty) docker run -it -p 3000:3000 CONTAINER_ID
+
+# Docker volumes: We set up a reference inside the docker container that will
+# point back to the local machine
+
+# first -v: put a bookmark on the node_modules folder
+# second -v: map the pwd into the '/app' folder
+docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app -<image_id>
+
+(in windows) -> Also check if C is shared with containers
+ winpty docker run -p 3000:3000 -v /app/node_modules -v /$(PWD):/app 676b2dfadfed
+# For some reason, Docker in Windows doesn't understand that it has to take the 
+# node_modules from the container but instead it tries to copy all the files from the frontend
+
+# For the docker-compose file, inside build since we have a different Dockerfile, we use 
+# build: context: . (to anounce to use the same working directory where we're are) and dockerfile: Dockerfile.dev
+# The COPY sentence may be deleted from the dockerfile because in the .yml we mount the volume to the container
+# But if in the future we need to change or not to use the docker-compose, it is better to let it in the dockerfile
+
+# Executing tests:
+docker build -f Dockerfile.dev . -> docker run <container-id> npm run test
+
+ 
