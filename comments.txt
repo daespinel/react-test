@@ -38,4 +38,32 @@ docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app -<image_id>
 # Executing tests:
 docker build -f Dockerfile.dev . -> docker run <container-id> npm run test
 
- 
+# We need to attach volumes to running containers (even attaching it to in the docker-compose.yml file or in a new service)
+# I solution
+# (Need to remember container ID and command)
+# We can also execute a new command inside the container (changing the test file, then the container updated itself)
+docker exec -it <container-id> npm run test
+
+# II solution
+# We add a second service in the docker-compose file
+#(We don't have the ability to enter the input console to the containers such as re-run tests)
+# When we use docker attach, we attach to the stdin of the first running process, in our example npm, for that reason we cannot execute anything with docker attach
+docker-compose up --build
+docker exec -it <test-container-id>
+
+# npm run build -> builds a production version of the application. We are going to use nginx a simple prod server
+# BUILD PHASE
+use node:alpine
+copy the package.json file
+install dependencies (deps only needed to execute 'npm run build')
+run 'npm run build'
+//start nginx (where's nginx comming?)
+
+# RUN PHASE
+use nginx
+copy over the result of 'npm run build'
+start nginx
+
+# /app/build -> folder of workdir in which we are interesting
+docker build . -> sudo docker run -p 8080:80 <container-id>
+
