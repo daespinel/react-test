@@ -21,6 +21,9 @@ docker container: npm run build -> Dockerfile
 # Docker volumes: We set up a reference inside the docker container that will
 # point back to the local machine
 
+# We have deleted the node_modules folder in tha host machine, because of this, when we do only the second volume attach, we'll have
+# a problem related with Docker trying to use the node_modules of the pwd which doesn't exist
+
 # first -v: put a bookmark on the node_modules folder
 # second -v: map the pwd into the '/app' folder
 docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app -<image_id>
@@ -67,3 +70,6 @@ start nginx
 # /app/build -> folder of workdir in which we are interesting
 docker build . -> sudo docker run -p 8080:80 <container-id>
 
+
+# Continuous integration and deployment with AWS
+# We'll implement a CI/CD chain with github + travis CI + AWS

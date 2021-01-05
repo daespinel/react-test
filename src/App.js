@@ -10,7 +10,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
 	  Hi there, this is a change done to JS
-	  Following the example of volumes
+	  Following the example of volumes. another.
         </p>
         <a
           className="App-link"
