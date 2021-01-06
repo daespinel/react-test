@@ -74,9 +74,4 @@ docker build . -> sudo docker run -p 8080:80 <container-id>
 # Continuous integration and deployment with AWS
 # We'll implement a CI/CD chain with github + travis CI + AWS
 
-# In the travis yml:
-# Tell travis we need a copy of docker running
-# Build our image using Dockerfile.dev
-# Tell Travis how to run our tests suite
-# Tell travis how to deploy our code to AWS
-# 
+# Travis is traditionally used for testing purpouses and after that to deploy applications.
