@@ -8,9 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
-	  Hi there, this is a change done to JS
-	  Following the example of volumes. another. Mira nena linda
+          Doing changes in the feature branch
         </p>
         <a
           className="App-link"

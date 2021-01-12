@@ -90,3 +90,5 @@ docker build . -> sudo docker run -p 8080:80 <container-id>
 
 # In Dockerfile we need to explain the exposure of ports for AWS Beanstalk
 EXPOSE 80
+
+# Use branches in github > feature branch > pull request to master and deploy
