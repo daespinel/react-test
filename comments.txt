@@ -79,4 +79,11 @@ docker build . -> sudo docker run -p 8080:80 <container-id>
 # Build our image using Dockerfile.dev
 # Tell Travis how to run our tests suite
 # Tell travis how to deploy our code to AWS
-# 
+
+# We're going to use AWS Elastic Beanstalk -> platform Docker (since our test is for a single container we have to use 64bit Amazon Linux) because in Linux 2 AWS will look for a docker-compose file
+# Beanstalk will provision all the necessary AWS elements for our application (load balancer, ec2 instance, security group, auto scaling groups,...)
+
+# We need to create a new user in IAM that will be used by travis ci
+# and provide rigths for beanstalk, then we need to use travis ci secrets
+# Travis CI > More settings > environment variables
+# AWS_access_key and AWS_SECRET_KEY are defined in travis ci
