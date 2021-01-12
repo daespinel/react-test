@@ -87,3 +87,6 @@ docker build . -> sudo docker run -p 8080:80 <container-id>
 # and provide rigths for beanstalk, then we need to use travis ci secrets
 # Travis CI > More settings > environment variables
 # AWS_access_key and AWS_SECRET_KEY are defined in travis ci
+
+# In Dockerfile we need to explain the exposure of ports for AWS Beanstalk
+EXPOSE 80
