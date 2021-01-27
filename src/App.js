@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Doing changes in the feature branch
+          Doing changes in the feature branch commiting
         </p>
         <a
           className="App-link"
